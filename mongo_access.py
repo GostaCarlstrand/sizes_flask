@@ -1,5 +1,3 @@
-import json
-
 from pymongo import MongoClient
 from df_handler import get_person_dict
 from person_handler import Person, calculate_person_size
