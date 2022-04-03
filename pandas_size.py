@@ -140,7 +140,8 @@ def init_df():
             list_neighbors.append(dis_values[i][0])
         return list_neighbors
 
-    df_list = h_w_df.values.tolist()        #Dataframe to list
+    df_list = h_w_df.values.tolist()
+    #Dataframe to list
 
     height = float(input("Enter height"))
     weight = float(input("Enter weight"))
