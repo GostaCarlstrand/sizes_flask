@@ -108,10 +108,10 @@ class Person:
     def __init__(self, data):
         self.chest_c = data['chest_c']
         self.waist_c = data['waist_c']
-        self.gender = data['Gender']
+        self.gender = data['gender']
         self.size, self.size_value = size(self.chest_c, self.waist_c, self.gender)
-        self.height = data['HeightCm']
-        self.weight = data['WeightKg']
+        self.height = data['height']
+        self.weight = data['weight']
 
 
 def calculate_person_size(height, weight, persons):
@@ -119,7 +119,7 @@ def calculate_person_size(height, weight, persons):
     test_row = [height, weight]
     neighbors = get_neighbors(persons, test_row, 3)
     chest_c, waist_c, size_v = calculate_person_data(neighbors) #Contains tuple of chest_c, waist_c and size_value
-    return chest_c, waist_c, size_v, values_sizes[size_v]
+    return round(chest_c, 2), round(waist_c, 2), size_v, values_sizes[size_v]
 
     #values_sizes[round(person_size_v)]
 

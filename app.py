@@ -1,14 +1,26 @@
-from flask import Flask, render_template
-import pandas_size as ps
-
-
+from flask import Flask, render_template, request, flash
+from mongo_access import get_latest_persons, add
 
 app = Flask(__name__)
-
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @app.get('/')
-def index():
-    return render_template('index.html')
+def index(size=None):
+    persons = get_latest_persons()
+    if size:
+        flash(size)
+    return render_template('index.html', persons=persons)
+
+
+@app.post('/submit')
+def submit_data():
+    height = float(request.form['height'])
+    weight = float(request.form['weight'])
+    gender = (request.form['gender'])
+    size = add(height, weight, gender)
+    return index(size)
+
+
 
 
 if __name__ == "__main__":
