@@ -1,0 +1,18 @@
+body {
+    background-color: black;
+}
+
+
+
+table, th, td {
+  border:1px solid black;
+    background-color: whitesmoke;
+}
+
+label {
+    background-color: whitesmoke;
+}
+
+input {
+    background-color: whitesmoke;
+}
