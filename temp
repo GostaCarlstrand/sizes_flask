@@ -1,0 +1,18 @@
+
+
+
+<table style="width:100%">
+  <tr>
+    <th>Height Cm</th>
+    <th>Weight Kg</th>
+    <th>Size</th>
+  </tr>
+  <tr>
+      {% for person in persons %}
+    <td>{{ person.height }}</td>
+    <td>{{ person.weight }}</td>
+    <td>{{ person.size }}</td>
+      <tr></tr>
+      {% endfor %}
+  </tr>
+</table>

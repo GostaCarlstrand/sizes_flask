@@ -29,7 +29,7 @@ def get_persons(gender):
 
 
 def init_db():
-    persons = get_person_dict('male')
+    persons = get_person_dict('female')
     for person in persons:
         person = Person(person)
         save(person.__dict__)
@@ -52,12 +52,13 @@ def add(height, weight, gender):
 
 
 def main():
-    height = float(input('Enter height'))
-    weight = float(input('Enter weight'))
-    gender = input('Enter gender')
-    add(height, weight, gender)
+    pass
+    # height = float(input('Enter height'))
+    # weight = float(input('Enter weight'))
+    # gender = input('Enter gender')
+    # add(height, weight, gender)
+    # get_latest_persons(10)
 
-    get_latest_persons()
 
 
 if __name__ == "__main__":

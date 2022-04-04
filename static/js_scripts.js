@@ -1,24 +1,42 @@
+  var female_xs = 0;
+  var male_xs = 0;
+  var female_s = 0;
+  var male_s = 0;
+  var female_m = 0;
+  var male_m = 0;
+  var female_l = 0;
+  var male_l = 0;
+  var female_xl = 0;
+  var male_xl = 0;
+  var female_xxl = 0;
+  var male_xxl = 0;
+
+
+
+function drawChart() {
   const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
+    'XS',
+    'S',
+    'M',
+    'L',
+    'XL',
+    'XXL',
   ];
 
   const data = {
+
+
     labels: labels,
     datasets: [{
-      label: 'My First dataset',
+      label: 'Females',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(11, 85, 82)',
-      data: [myVar, 10, 5, 2, 20, 30, 45],
+      data: [female_xs, female_s, female_m, female_l, female_xl, female_xxl, objectSize],
     }, {
-        label: 'My First dataset',
+      label: 'Males',
       backgroundColor: 'rgb(255, 0, 0)',
       borderColor: 'rgb(11, 85, 82)',
-      data: [25, 20, 5, 2, 20, 30, 45],
+      data: [male_xs, male_s, male_m, male_l, male_xl, male_xxl, objectSize],
 
     }]
   };
@@ -30,9 +48,8 @@
   };
 
   const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
+      document.getElementById('myChart'),
+      config
   );
-
-
+}
 

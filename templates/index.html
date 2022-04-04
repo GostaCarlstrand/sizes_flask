@@ -20,10 +20,9 @@
 {% endwith %}
 
 
-<button onclick="testButton()"> Knapp</button>
+
 
 <p id="test"></p>
-
 
 <form action="{{ url_for('submit_data') }}" method="post" id="person_form">
     <label for="height">Height</label>
@@ -37,33 +36,11 @@
     <input type="submit" value="Submit data">
 </form>
 
-<table style="width:100%">
-  <tr>
-    <th>Height Cm</th>
-    <th>Weight Kg</th>
-    <th>Size</th>
-  </tr>
-  <tr>
-      {% for person in persons %}
-    <td>{{ person.height }}</td>
-    <td>{{ person.weight }}</td>
-    <td>{{ person.size }}</td>
-      <tr></tr>
-      {% endfor %}
-  </tr>
-</table>
+
 
 <div>
   <canvas id="myChart"></canvas>
 </div>
-
-<script>
-      var myVar = '{{ myVar }}';
-      document.getElementById('test').innerText = myVar
-      myVar = parseInt(myVar)
-      console.log(typeof myVar)
-</script>
-
 
 
 
