@@ -13,12 +13,12 @@
       label: 'My First dataset',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(11, 85, 82)',
-      data: [0, 10, 5, 2, 20, 30, 45],
+      data: [myVar, 10, 5, 2, 20, 30, 45],
     }, {
         label: 'My First dataset',
       backgroundColor: 'rgb(255, 0, 0)',
       borderColor: 'rgb(11, 85, 82)',
-      data: [10, 20, 5, 2, 20, 30, 45],
+      data: [25, 20, 5, 2, 20, 30, 45],
 
     }]
   };
@@ -33,4 +33,6 @@
     document.getElementById('myChart'),
     config
   );
+
+
 

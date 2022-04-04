@@ -12,10 +12,10 @@ def save(person):
     db_col.insert_one(person)
 
 
-def get_latest_persons():
+def get_latest_persons(amount):
     persons = db_col.find().sort('_id', -1)
     latest_persons = []
-    for i in range(10):
+    for i in range(amount):
         latest_persons.append(persons[i])
     return latest_persons
 

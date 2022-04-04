@@ -57,10 +57,20 @@
   <canvas id="myChart"></canvas>
 </div>
 
+<script>
+      var myVar = '{{ myVar }}';
+      document.getElementById('test').innerText = myVar
+      myVar = parseInt(myVar)
+      console.log(typeof myVar)
+</script>
+
+
+
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/static/js_scripts.js"></script>
+<script src="/static/requestServer.js"></script>
 
 
 </html>
