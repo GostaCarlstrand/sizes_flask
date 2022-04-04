@@ -97,13 +97,6 @@ def size(chest_c, waist_c, gender):
 
 
 class Person:
-    # def __init__(self, chest_c, waist_c, gender, height, weight):
-    #     self.chest_c = chest_c
-    #     self.waist_c = waist_c
-    #     self.gender = gender
-    #     self.size, self.size_value = size(chest_c, waist_c, gender)
-    #     self.height = height
-    #     self.weight = weight
 
     def __init__(self, data):
         self.chest_c = data['chest_c']
@@ -115,13 +108,10 @@ class Person:
 
 
 def calculate_person_size(height, weight, persons):
-    # persons = list from database that contains persons with same gender
     test_row = [height, weight]
     neighbors = get_neighbors(persons, test_row, 3)
     chest_c, waist_c, size_v = calculate_person_data(neighbors) #Contains tuple of chest_c, waist_c and size_value
     return round(chest_c, 2), round(waist_c, 2), size_v, values_sizes[size_v]
-
-    #values_sizes[round(person_size_v)]
 
 
 def euclidean_distance(row1, row2):
@@ -140,17 +130,10 @@ def get_neighbors(train, test_row, num_neighbors):
     for train_row in train:
         dis = euclidean_distance(test_row, train_row)
         dis_values.append((train_row, dis))
-    print()
     dis_values.sort(key=lambda tup: tup[1])
     list_neighbors = list()
     for i in range(num_neighbors):
         list_neighbors.append(dis_values[i][0])
-
-    # neighbors_persons = []  # List to fill neighbors as person objects
-    # for neighbor in list_neighbors:
-    #     for person in train:
-    #         if all(x in [person.height, person.weight] for x in [neighbor[0], neighbor[1]]):
-    #             neighbors_persons.append(person)
 
     return list_neighbors
 
@@ -163,8 +146,6 @@ def calculate_person_data(neighbors_persons):
         person_size_v += person['size_value']
         chest_c += person['chest_c']
         waist_c += person['waist_c']
-
-    # Get the average size value
 
     chest_c /= len(neighbors_persons)
     waist_c /= len(neighbors_persons)

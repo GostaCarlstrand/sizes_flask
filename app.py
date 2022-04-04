@@ -3,12 +3,10 @@ from mongo_access import get_latest_persons, add
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+persons = get_latest_persons()
 
 @app.get('/')
-def index(size=None):
-    persons = get_latest_persons()
-    if size:
-        flash(size)
+def index():
     return render_template('index.html', persons=persons)
 
 
@@ -18,7 +16,8 @@ def submit_data():
     weight = float(request.form['weight'])
     gender = (request.form['gender'])
     size = add(height, weight, gender)
-    return index(size)
+    flash(size)
+    return render_template('index.html', persons=persons)
 
 
 
