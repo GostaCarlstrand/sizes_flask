@@ -7,6 +7,7 @@ function getPersons() {
         objectSize = Object.keys(persons).length
         for (let i = 0; i < objectSize; i++) {
             if (persons[i]['gender'] === 'Male') {
+
                 getMaleSize(persons[i]['size_value'])
             } else {
                 getFemaleSize(persons[i]['size_value'])

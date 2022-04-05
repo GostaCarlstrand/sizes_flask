@@ -47,7 +47,7 @@ function drawChart() {
     options: {}
   };
 
-  const myChart = new Chart(
+  const Chart = new Chart(
       document.getElementById('myChart'),
       config
   );

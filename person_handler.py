@@ -46,6 +46,64 @@ class WF:
     XXL = (88, 120)
 
 
+# Hips male for swimming
+class HM:
+    XS = (0, 88)
+    S = (88, 96)
+    M = (96, 104)
+    L = (104, 112)
+    XL = (112, 120)
+    XXL = (120, 128)
+
+
+# Hips female for swimming
+class HF:
+    XS = (84, 91)
+    S = (91, 98)
+    M = (98, 105)
+    L = (105, 112)
+    XL = (112, 120)
+    XXL = (120, 150)
+
+
+# Bust female for swimming
+class BF:
+    XS = (76, 83)
+    S = (83, 90)
+    M = (90, 97)
+    L = (97, 104)
+    XL = (104, 114)
+    XXL = (114, 130)
+
+
+def swimming_size_value(*args):
+    # g_class = gender class
+    rounds = 1
+    g_class = HM
+    if args[2] == 'Female':
+        rounds = 2
+        g_class = HF
+
+    for i in range(rounds):
+        swim_measurements = args[i]
+        if i == 1:
+            g_class = BF
+
+        if swim_measurements > (max(g_class.M)):
+            if swim_measurements > (max(g_class.XL)):
+                return sizes_values['XXL']
+            elif swim_measurements < (min(g_class.XL)):
+                return sizes_values['L']
+            else:
+                return sizes_values['XL']
+        elif swim_measurements > (max(g_class.S)):
+            return sizes_values['M']
+        elif swim_measurements < (min(g_class.S)):
+            return sizes_values['XS']
+        else:
+            return sizes_values['S']
+
+
 def chest_size_value(chest_c, waist_c, gender, **kwargs):
     # CM and CF - ChestMale, ChestFemale
     # WM and WF - WaistMale, WaistFemale
@@ -91,6 +149,12 @@ values_sizes = {
 def size(chest_c, waist_c, gender):
     chest_size_c_value = chest_size_value(chest_c, waist_c, gender, chest=True)
     chest_size_w_value = chest_size_value(chest_c, waist_c, gender, chest=False)
+
+
+
+    swim_size = swimming_size_value(waist_c, chest_c, gender)
+    print()
+
     max_size_value = max(chest_size_w_value, chest_size_c_value)
     person_size = values_sizes[max_size_value]
     return person_size, max_size_value
