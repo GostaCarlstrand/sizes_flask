@@ -5,7 +5,7 @@ from person_handler import Person, calculate_person_size
 conn_string = "mongodb://root:qwerty@localhost:27017"
 client = MongoClient(conn_string)
 db = client["mydb"]
-db_col = db['persons']
+db_col = db['persons_temp']
 
 
 def save(person):

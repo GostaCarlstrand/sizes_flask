@@ -3,7 +3,7 @@ import pandas as pd
 
 def get_person_dict(gender):
     df = pd.read_csv(f'./org_csv/{gender}.csv')
-    df = df.head(1)
+    df = df.head(10)
     df_list = []
 
     df = df.reset_index()  # make sure indexes pair with number of rows
