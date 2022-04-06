@@ -52,12 +52,11 @@ def add(height, weight, gender):
 
 
 def main():
-    init_db()
-    # height = float(input('Enter height'))
-    # weight = float(input('Enter weight'))
-    # gender = input('Enter gender')
-    # add(height, weight, gender)
-    # # get_latest_persons(10)
+    height = float(input('Enter height'))
+    weight = float(input('Enter weight'))
+    gender = input('Enter gender')
+    add(height, weight, gender)
+    # get_latest_persons(10)
 
 
 
