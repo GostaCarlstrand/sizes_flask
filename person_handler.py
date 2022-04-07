@@ -1,4 +1,4 @@
-from ml_handler import get_neighbors, sk_knn
+from ml_handler import get_neighbors, sk_knn, linearRegr
 
 sizes_values = {
     'XS': 0,
@@ -203,9 +203,15 @@ def calculate_person_size(height, weight, persons):
     test_row = [height, weight]
     neighbors = get_neighbors(persons, test_row, 3)
     chest_c, waist_c, size_v = calculate_person_data(neighbors) #Contains tuple of chest_c, waist_c and size_value
-    index = sk_knn(persons)
-    value = index[0][1]
-    size_sk_nn = persons[value]
+    nr_neighbors = 3
+    index = sk_knn(test_row, persons, nr_neighbors) #Tuple with indices to nn
+
+    nn_by_index = []
+    for i in range(len(index)):
+        nn_by_index.append(persons[index[i]])
+
+    print()
+    #data = linearRegr(chest_c, waist_c, persons)
     return round(chest_c, 2), round(waist_c, 2), size_v, values_sizes[size_v]
 
 
@@ -217,6 +223,7 @@ def calculate_person_data(neighbors_persons):
         person_size_v += person['size_value']
         chest_c += person['chest_c']
         waist_c += person['waist_c']
+
 
     chest_c /= len(neighbors_persons)
     waist_c /= len(neighbors_persons)

@@ -47,9 +47,12 @@ function drawChart() {
     options: {}
   };
 
-  const Chart = new Chart(
+  const myChart = new Chart(
       document.getElementById('myChart'),
       config
   );
 }
+
+
+
 
