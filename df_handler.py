@@ -19,3 +19,11 @@ def get_person_dict(gender):
     return df_list
 
 
+
+
+def convert_to_df():
+    from mongo_access import get_persons
+    data = get_persons('Male')
+    df = pd.DataFrame(data)
+    new_df = df[['weight', 'size']].copy()
+    print(new_df.head(15))
