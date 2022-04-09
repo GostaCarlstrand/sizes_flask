@@ -7,7 +7,7 @@ from person_handler import Person, calculate_person_size
 conn_string = "mongodb://root:qwerty@localhost:27017"
 client = MongoClient(conn_string)
 db = client["mydb"]
-db_col = db['persons_temp']
+db_col = db['persons']
 
 
 def save(person):
@@ -20,6 +20,7 @@ def get_latest_persons(amount):
     for i in range(amount):
         latest_persons.append(persons[i])
     return latest_persons
+
 
 def save_persons_to_csv():
     males = get_persons('Male')
@@ -48,14 +49,10 @@ def save_persons_to_csv():
 
     list_by_gender(males)
     list_by_gender(females)
-    print()
     with open('persons_csv.csv', 'w') as f:
-        # using csv.writer method from CSV package
         write = csv.writer(f)
-
         write.writerow(fields)
         write.writerows(persons)
-
 
 
 def get_persons(gender):
@@ -76,7 +73,7 @@ def init_db():
 
 def add(height, weight, gender):
     persons = get_persons(gender)
-    chest_c, waist_c, size_v, size = calculate_person_size(height, weight, persons)
+    chest_c, waist_c, size_v, size = calculate_person_size(height, weight, persons, gender)
     person = {
         'chest_c': chest_c,
         'waist_c': waist_c,
@@ -91,12 +88,11 @@ def add(height, weight, gender):
 
 
 def main():
-    # init_db()
-    save_persons_to_csv()
-    # height = float(input('Enter height'))
-    # weight = float(input('Enter weight'))
-    # gender = input('Enter gender')
-    # add(height, weight, gender)
+
+    height = float(input('Enter height'))
+    weight = float(input('Enter weight'))
+    gender = input('Enter gender')
+    add(height, weight, gender)
     # # get_latest_persons(10)
 
 

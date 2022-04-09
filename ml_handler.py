@@ -1,7 +1,8 @@
 from math import sqrt
-import numpy as np
 from sklearn.neighbors import NearestNeighbors
-from sklearn.linear_model import LinearRegression
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
 
 
 def get_multi_array(samples):
@@ -47,13 +48,19 @@ def get_neighbors(train, test_row, num_neighbors):
     return list_neighbors
 
 
-def linearRegr(chest_c, waist_c, samples):
-    sample_array = get_multi_array(samples)
-    X = np.array(sample_array)
-    # y = 1 * x_0 + 2 * x_1 + 3
-    y = np.dot(X, np.array([chest_c, waist_c]))
-    reg = LinearRegression().fit(X, y)
-    reg.score(X, y)
-    reg.coef_
-    reg.intercept_
-    reg.predict(np.array([[3, 5]]))
+def decision_tree(person):
+    df = pd.read_csv('persons_csv.csv')
+    df.loc[df['gender'] == 'Male', 'gender'] = 1    # Change from string to numeric value
+    df.loc[df['gender'] == 'Female', 'gender'] = 0
+    X = df.drop(['size_value', 'size'], axis=1).copy()  # New df without size or size value column
+    y = df.size_value.copy()    # y column contains only the size_value series
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.33)
+    clf_dt_pruned = DecisionTreeClassifier(random_state=42, ccp_alpha=0.015311)
+    clf_dt_pruned_2 = clf_dt_pruned.fit(X_train, y_train)
+    if isinstance(person.gender, str):
+        if person.gender == 'Male':
+            person.gender = 1
+        else:
+            person.gender = 0
+    size_result = clf_dt_pruned_2.predict([person])
+    return size_result

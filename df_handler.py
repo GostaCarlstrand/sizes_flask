@@ -3,10 +3,10 @@ import pandas as pd
 
 def get_person_dict(gender):
     df = pd.read_csv(f'./org_csv/{gender}.csv')
-    df = df.head(10)
+    #df = df.head(10)   Used to create smaller df
     df_list = []
 
-    df = df.reset_index()  # make sure indexes pair with number of rows
+    df = df.reset_index()
     for index, row in df.iterrows():
         df_dict = {
             'chest_c': row['chestcircumference'] / 10,
