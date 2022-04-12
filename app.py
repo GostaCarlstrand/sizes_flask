@@ -19,7 +19,8 @@ def submit_data():
     height = float(request.form['height'])
     weight = float(request.form['weight'])
     gender = (request.form['gender'])
-    size = add(height, weight, gender)
+    model = (request.form['model'])
+    size = add(height, weight, gender, model)
     flash(size)
     return redirect(url_for('index'))
 

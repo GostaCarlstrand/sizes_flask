@@ -1,4 +1,6 @@
 from math import sqrt
+
+from pandas.core.dtypes.common import is_numeric_dtype
 from sklearn.neighbors import NearestNeighbors
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
@@ -52,8 +54,8 @@ def decision_tree(person):
     df = pd.read_csv('persons_csv.csv')
     df.loc[df['gender'] == 'Male', 'gender'] = 1    # Change from string to numeric value
     df.loc[df['gender'] == 'Female', 'gender'] = 0
-    X = df.drop(['size_value', 'size'], axis=1).copy()  # New df without size or size value column
-    y = df.size_value.copy()    # y column contains only the size_value series
+    X = df.drop(['size_value', 'size'], axis=1).copy().to_numpy()  # New df without size or size value column
+    y = df.size_value.copy().to_numpy() # y column contains only the size_value series
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.33)
     clf_dt_pruned = DecisionTreeClassifier(random_state=42, ccp_alpha=0.015311)
     clf_dt_pruned_2 = clf_dt_pruned.fit(X_train, y_train)
@@ -64,3 +66,5 @@ def decision_tree(person):
             person.gender = 0
     size_result = clf_dt_pruned_2.predict([person])
     return size_result
+
+decision_tree([180,180,1,180])

@@ -199,23 +199,27 @@ class Person:
         self.weight = data['weight']
 
 
-def calculate_person_size(height, weight, persons, gender):
+def calculate_person_size(height, weight, persons, gender, model):
     test_row = [height, weight]
-    neighbors = get_neighbors(persons, test_row, 3)
+    if model == 'knn_euclidean':
+        neighbors = get_neighbors(persons, test_row, 3)
+
+    if model == 'dec_tree':
+        #person = [chest_c, waist_c, gender, height, weight]
+        #    decision_tree(person)
+        pass
+    else:
+        # Using sklearn knn algorithm
+        nr_neighbors = 3
+        index = sk_knn(test_row, persons, nr_neighbors) #Tuple with indices to nn
+        neighbors = []
+        for i in range(len(index)):
+            neighbors.append(persons[index[i]])
+
     chest_c, waist_c, size_v = calculate_person_data(neighbors) #Contains tuple of chest_c, waist_c and size_value
-    nr_neighbors = 3
-    index = sk_knn(test_row, persons, nr_neighbors) #Tuple with indices to nn
-
-    # Using sklearn knn algorithm
-    nn_by_index = []
-    for i in range(len(index)):
-        nn_by_index.append(persons[index[i]])
-
-    person = [chest_c, waist_c, gender, height, weight]
-    decision_tree(person)
-
-
     return round(chest_c, 2), round(waist_c, 2), size_v, values_sizes[size_v]
+
+
 
 
 def calculate_person_data(neighbors_persons):

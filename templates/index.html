@@ -22,16 +22,26 @@
 
 <p id="test"></p>
 
+<div class="radio">
 <form action="{{ url_for('submit_data') }}" method="post" id="person_form">
     <label for="height">Height</label>
     <input type="text" id="height" name="height"><br/>
     <label for="weight">Weight</label>
     <input type="text" id="weight" name="weight"><br/>
-    <input type="radio" id="male" name="gender" value="Male" checked>
-    <label for="male">Male</label>
-    <input type="radio" id="female" name="gender" value="Female">
-    <label for="female">Female</label>
-    <input type="submit" value="Submit data">
+        <input type="radio" id="male" name="gender" value="Male" checked>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label><br/>
+        <input type="radio" id="tree" name="model" value="dec_tree" checked>
+        <label for="tree">Decision Tree</label>
+        <input type="radio" id="knn" name="model" value="knn_sklearn" checked>
+        <label for="knn">K Nearest Neighbor</label>
+        <input type="radio" id="euclidean" name="model" value="knn_euclidean" checked>
+        <label for="knn">Euclidean Distance</label>
+    </div>
+    <div class="input-button">
+        <input type="submit" value="Submit data">
+    </div>
 </form>
 
 

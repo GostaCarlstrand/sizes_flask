@@ -71,9 +71,9 @@ def init_db():
         save(person.__dict__)
     
 
-def add(height, weight, gender):
+def add(height, weight, gender, model):
     persons = get_persons(gender)
-    chest_c, waist_c, size_v, size = calculate_person_size(height, weight, persons, gender)
+    chest_c, waist_c, size_v, size = calculate_person_size(height, weight, persons, gender, model)
     person = {
         'chest_c': chest_c,
         'waist_c': waist_c,
@@ -88,11 +88,11 @@ def add(height, weight, gender):
 
 
 def main():
-
+    #95, 81, 0, 171, 59
     height = float(input('Enter height'))
     weight = float(input('Enter weight'))
     gender = input('Enter gender')
-    add(height, weight, gender)
+    add(height, weight, gender, 'knn_euclidean')
     # # get_latest_persons(10)
 
 
