@@ -3,7 +3,6 @@ import pandas as pd
 
 def get_person_dict(gender):
     df = pd.read_csv(f'./org_csv/{gender}.csv')
-    #df = df.head(10)   Used to create smaller df
     df_list = []
 
     df = df.reset_index()
@@ -17,7 +16,6 @@ def get_person_dict(gender):
         }
         df_list.append(df_dict)
     return df_list
-
 
 
 

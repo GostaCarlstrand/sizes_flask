@@ -1,8 +1,7 @@
 import csv
-
 from pymongo import MongoClient
-
 from person_handler import Person, calculate_person_size
+
 
 conn_string = "mongodb://root:qwerty@localhost:27017"
 client = MongoClient(conn_string)
@@ -71,7 +70,7 @@ def init_db():
         save(person.__dict__)
     
 
-def add(height, weight, gender, model):
+def add(height, weight, gender, model='knn_euclidean'):
     persons = get_persons(gender)
     chest_c, waist_c, size_v, size = calculate_person_size(height, weight, persons, gender, model)
     person = {
@@ -85,18 +84,3 @@ def add(height, weight, gender, model):
     }
     save(person)
     return size
-
-
-def main():
-    #95, 81, 0, 171, 59
-    height = float(input('Enter height'))
-    weight = float(input('Enter weight'))
-    gender = input('Enter gender')
-    add(height, weight, gender, 'knn_euclidean')
-    # # get_latest_persons(10)
-
-
-
-if __name__ == "__main__":
-    main()
-

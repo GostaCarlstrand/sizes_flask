@@ -10,14 +10,6 @@ sizes_values = {
 }
 
 
-# class CM:
-#     XS = (0, 90)
-#     S = (91, 96)
-#     M = (96, 101)
-#     L = (101, 106)
-#     XL = (106, 111)
-#     XXL = (111, 150)
-
 class CM:
     XS = (0, 81)
     S = (86, 91)
@@ -27,13 +19,6 @@ class CM:
     XXL = (122, 150)
 
 
-# class WM:
-#     XS = (0, 78)
-#     S = (79, 84)
-#     M = (84, 89)
-#     L = (89, 94)
-#     XL = (94, 99)
-#     XXL = (99, 120)
 class WM:
     XS = (0, 76)
     S = (76, 81)
@@ -42,13 +27,7 @@ class WM:
     XL = (87, 97)
     XXL = (97, 120)
 
-# class CF:
-#     XS = (81, 85)
-#     S = (85, 89)
-#     M = (89, 94)
-#     L = (94, 99)
-#     XL = (99, 104)
-#     XXL = (104, 150)
+
 class CF:
     XS = (0, 76)
     S = (76, 81)
@@ -58,13 +37,6 @@ class CF:
     XXL = (107, 150)
 
 
-# class WF:
-#     XS = (63, 68)
-#     S = (68, 73)
-#     M = (73, 78)
-#     L = (78, 83)
-#     XL = (83, 88)
-#     XXL = (88, 120)
 class WF:
     XS = (0, 64)
     S = (64, 68)
@@ -184,7 +156,6 @@ def size(chest_c, waist_c, gender):
 
     max_size_value = max(chest_size_w_value, chest_size_c_value)
     person_size = values_sizes[max_size_value]
-    #      xs, s, m     size as value   swim xs, s, m
     return person_size, max_size_value, swim_size
 
 
@@ -208,7 +179,7 @@ def calculate_person_size(height, weight, persons, gender, model):
         #person = [chest_c, waist_c, gender, height, weight]
         #    decision_tree(person)
         pass
-    else:
+    if model == 'knn_sklearn':
         # Using sklearn knn algorithm
         nr_neighbors = 3
         index = sk_knn(test_row, persons, nr_neighbors) #Tuple with indices to nn
@@ -220,8 +191,6 @@ def calculate_person_size(height, weight, persons, gender, model):
     return round(chest_c, 2), round(waist_c, 2), size_v, values_sizes[size_v]
 
 
-
-
 def calculate_person_data(neighbors_persons):
     person_size_v = 0
     chest_c = 0
@@ -231,9 +200,7 @@ def calculate_person_data(neighbors_persons):
         chest_c += person['chest_c']
         waist_c += person['waist_c']
 
-
     chest_c /= len(neighbors_persons)
     waist_c /= len(neighbors_persons)
     person_size_v /= len(neighbors_persons)
     return chest_c, waist_c, round(person_size_v)
-
